@@ -25,26 +25,55 @@ import { PricingCards } from '../components/PricingCards';
 
 /** CEO 프로필 */
 const ceoProfile = {
-  name: '박병준',
-  role: 'CEO & Founder',
-  sub: 'AI 연구자 / 10년차 아키텍트\n비즈니스 전략가 / 글로벌 사업개발(Biz-Dev)',
+  name: '박병준 대표 컨설턴트',
+  role: 'Principal Consultant',
+  sub: 'AI 파인튜닝 & 멀티에이전트 연구 / 10년차 엔지니어\n글로벌 사업개발(Biz-Dev) 비즈니스 전략가',
   company: 'Makers World',
   image: '/assets/profiles/pbj-ceo-profile-251004-warm-shirt-notie.png',
   career: [
-    '현) 메이커스월드 주식회사 대표',
-    '현) 모두의연구소 현직자 AI 서비스 개발과정 - 최신 AI 트렌드 교육',
-    '전) 삼육대 KDT 과정 AI 풀스택 개발과정 전임강사 - 전 과정 수료율 100%',
-    '전) 카카오 키즈노트 백엔드 개발 - 데이터 기반 매출 2배 견인',
-    '전) 한국생산성본부 객원 컨설턴트 - SW 고성장 클럽 글로벌 진출 지원',
-    '전) Luxrobo 글로벌 사업개발 매니저 - 미국·중동·중국 시장 개척',
+    {
+      title: '현) 메이커스월드 주식회사 대표',
+      desc: 'AI 멀티에이전트 시스템 및 도메인 특화형 컴퓨팅 비용 최적화 연구',
+    },
+    {
+      title: '현) 모두의연구소 재직자 AI 서비스 개발과정 대표 강사',
+      desc: '최신 AI 바이브코딩 트렌드 도입 프로젝트 교육',
+    },
+    {
+      title: '전) KOICA 협력 스리랑카 커리어 플랫폼 초청특강',
+      desc: '플랫폼 운영 실무자 대상 IT 트렌드 변화 및 생성형 AI 기반 AX 특강',
+    },
+    {
+      title: '전) 국내외 대기업 임직원 기술 교육 및 컨설팅',
+      desc: 'KT, 하나금융, SDI Innovations(US), Almotahida Education(UAE)',
+    },
+    {
+      title: '전) 삼육대 KDT 과정 AI 풀스택 개발과정 전임강사',
+      desc: '2년 간 1,000시간 장기과정 수료율 100%',
+    },
+    {
+      title: '전) 카카오 키즈노트 백엔드 개발',
+      desc: [
+        '고객 데이터 기반 광고 알고리즘 고도화 - 재직 기간 매출 2배 견인',
+        'MSA형 백엔드 광고 서버 단독 책임개발 - 2년 간 무장애 기록',
+      ],
+    },
+    {
+      title: '전) 한국생산성본부 객원 컨설턴트',
+      desc: 'SW 고성장 클럽 글로벌 진출 지원',
+    },
+  ],
+  researchAreas: [
+    'LLM(거대언어모델) 파인튜닝 연구',
+    'AI 멀티에이전트 시스템 구축 및 효율성 연구',
+    'AI 활용 서비스 기획/개발',
   ],
   achievements: [
-    'LLM(거대언어모델) 파인튜닝 연구',
     '300만 트래픽 무장애·매출 성장',
     '국가 주도 SW 비즈니스 컨설팅',
     'Global SW/HW 융합 비즈니스 확장 전략',
   ],
-  quote: '"앞서가는 AI 활용이 곧 비즈니스의 경쟁력이 되는 시대입니다.\nAI 연구자의 시선으로 설계하고,\n전문 컨설턴트의 경험으로 여러분의 비즈니스 성공을 돕겠습니다."',
+  quote: '"앞서가는 AI 활용이 곧 비즈니스의 경쟁력이 되는 시대입니다.\nAI 연구자의 시선으로 설계하고, 현장 경험을 갖춘 전문 컨설턴트로서\n 여러분의 커리어 성장과 비즈니스 성공을 돕겠습니다."',
 };
 
 /** AI 개발진 프로필 */
@@ -263,11 +292,11 @@ export const TeamPage: React.FC = () => {
               {/* Top Section: Image + Basic Info */}
               <div className="flex flex-col md:flex-row gap-8 items-center md:items-start mb-8">
                 {/* Profile Image */}
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 pt-4 mt-4">
                   <div className="w-72 h-72 md:w-[400px] md:h-[400px] rounded-2xl overflow-hidden shadow-2xl shadow-amber-500/20 border-2 border-amber-500/30">
                     <img 
                       src={ceoProfile.image} 
-                      alt={ceoProfile.name}
+                      alt="박병준"
                       className="w-full h-full object-cover object-top"
                     />
                   </div>
@@ -281,31 +310,44 @@ export const TeamPage: React.FC = () => {
 
                   {/* Career */}
                   <div className="text-left">
-                    <h4 className="text-sm font-semibold text-white/80 mb-2">경력</h4>
+                    <h4 className="text-sm font-semibold text-white/80 mb-2">주요 경력</h4>
                     <ul className="space-y-2">
-                      {ceoProfile.career.map((item, i) => {
-                        const [title, desc] = item.includes(' - ') ? item.split(' - ') : [item, null];
-                        return (
-                          <li key={i} className="text-sm flex items-start gap-2">
-                            <span className="text-amber-400 mt-1">•</span>
-                            <div className="text-left">
-                              <span className="text-white/60">{title}</span>
-                              {desc && (
-                                <span className="block text-white/40 text-xs mt-0.5">{desc}</span>
-                              )}
-                            </div>
-                          </li>
-                        );
-                      })}
+                      {ceoProfile.career.map((item, i) => (
+                        <li key={i} className="text-sm flex items-start gap-2">
+                          <span className="text-amber-400 mt-1">•</span>
+                          <div className="text-left">
+                            <span className="text-white/60">{item.title}</span>
+                            {item.desc && (
+                              <>
+                                {Array.isArray(item.desc) ? (
+                                  item.desc.map((desc, j) => (
+                                    <span key={j} className="block text-white/40 text-xs mt-0.5">{desc}</span>
+                                  ))
+                                ) : (
+                                  <span className="block text-white/40 text-xs mt-0.5">{item.desc}</span>
+                                )}
+                              </>
+                            )}
+                          </div>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
               </div>
 
               {/* Bottom Section: Full Width */}
-              {/* Achievements */}
               <div className="mb-6 pt-6 border-t border-white/10">
-                <h4 className="text-sm font-semibold text-white/80 mb-3">주요 성과</h4>
+                <h4 className="text-sm font-semibold text-white/80 mb-3">연구 분야 및 전문 영역</h4>
+                <div className="flex flex-wrap gap-2">
+                  {ceoProfile.researchAreas.map((item, i) => (
+                    <span key={i} className="text-sm px-4 py-2 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                <br />
+                <h4 className="text-sm font-semibold text-white/80 mb-3">현업 주요 성과</h4>
                 <div className="flex flex-wrap gap-2">
                   {ceoProfile.achievements.map((item, i) => (
                     <span key={i} className="text-sm px-4 py-2 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">
@@ -317,11 +359,9 @@ export const TeamPage: React.FC = () => {
 
               {/* Quote */}
               <blockquote className="text-lg md:text-xl italic text-white/80 border-l-4 border-amber-500 pl-6">
-                "앞서가는 AI 활용이 곧 비즈니스의 경쟁력이 되는 시대입니다.
-                <br />
-                AI 연구자의 시선으로 설계하고,
-                <br className="md:hidden" />
-                {' '}전문 컨설턴트의 경험으로 여러분의 비즈니스 성공을 돕겠습니다."
+                "앞서가는 AI 활용이 곧 비즈니스의 경쟁력이 되는 시대입니다.<br />
+                AI 연구자의 시선으로 설계하고, 현장 경험을 갖춘 전문 컨설턴트로서<br />
+                여러분의 커리어 성장과 비즈니스 성공을 돕겠습니다."
               </blockquote>
             </div>
           </div>
